@@ -1,0 +1,19 @@
+---
+title: "try test.py"
+output: html_notebook
+---
+```{r}
+packageurl <-"http://cran.r-project.org/bin/windows/Rtools/Rtools34.exe"
+install.packages(packageurl, contriburl=NULL, type="source")
+```
+
+```{r}
+setwd("~/GitHub/spr2017-proj3-group10/lib")
+library(rPython)
+#Load/run the main Python script
+python.load("test.py")
+# Get the variable from python
+python.load("test.py")
+d <- python.get("d")
+d
+```
