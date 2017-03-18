@@ -10,10 +10,24 @@ install.packages(packageurl, contriburl=NULL, type="source")
 ```{r}
 setwd("~/GitHub/spr2017-proj3-group10/lib")
 library(rPython)
+```
+```{r}
 #Load/run the main Python script
 python.load("test.py")
 # Get the variable from python
 python.load("test.py")
 d <- python.get("d")
 d
+```
+```{r}
+python.load("test_sift.py")
+descs_list <- python.get("descs_list")
+# Convert list to array
+# img_descs <- do.call()
+# length(img_descs)
+length(descs_list)
+#img_sift <- do.call("rbind", img_descs)
+img_sift <- do.call("rbind", descs_list)
+dim(img_sift)
+img_sift[1:5, 1:5]
 ```

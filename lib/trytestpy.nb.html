@@ -178,14 +178,6 @@ $(document).ready(function () {
 <pre class="r"><code>packageurl &lt;-&quot;http://cran.r-project.org/bin/windows/Rtools/Rtools34.exe&quot;
 install.packages(packageurl, contriburl=NULL, type=&quot;source&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSW5zdGFsbGluZyBwYWNrYWdlIGludG8gkUM6L1VzZXJzL3NoMzU1L0RvY3VtZW50cy9SL3dpbi1saWJyYXJ5LzMuM5JcbihhcyCRbGlikiBpcyB1bnNwZWNpZmllZClcbiJ9 -->
-<pre><code>Installing package into &lt;U+393C&gt;&lt;U+3E31&gt;C:/Users/sh355/Documents/R/win-library/3.3&lt;U+393C&gt;&lt;U+3E32&gt;
-(as &lt;U+393C&gt;&lt;U+3E31&gt;lib&lt;U+393C&gt;&lt;U+3E32&gt; is unspecified)</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBpbnN0YWxsLnBhY2thZ2VzIDpcbiAgcGFja2FnZSDigJhodHRwOi8vY3Jhbi5yLXByb2plY3Qub3JnL2Jpbi93aW5kb3dzL1J0b29scy9SdG9vbHMzNC5leGXigJkgaXMgbm90IGF2YWlsYWJsZSAoZm9yIFIgdmVyc2lvbiAzLjMuMilcbiJ9 -->
-<pre><code>Warning in install.packages :
-  package ‘http://cran.r-project.org/bin/windows/Rtools/Rtools34.exe’ is not available (for R version 3.3.2)</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -194,12 +186,57 @@ install.packages(packageurl, contriburl=NULL, type=&quot;source&quot;)</code></p
 <pre class="r"><code>setwd(&quot;~/GitHub/spr2017-proj3-group10/lib&quot;)
 library(rPython)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gbGlicmFyeShyUHl0aG9uKSA6IHRoZXJlIGlzIG5vIHBhY2thZ2UgY2FsbGVkIOKAmHJQeXRob27igJlcbiJ9 -->
-<pre><code>Error in library(rPython) : there is no package called ‘rPython’</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBSSlNPTklPXG4ifQ== -->
+<pre><code>Loading required package: RJSONIO</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0xvYWQvcnVuIHRoZSBtYWluIFB5dGhvbiBzY3JpcHRcbnB5dGhvbi5sb2FkKFwidGVzdC5weVwiKVxuIyBHZXQgdGhlIHZhcmlhYmxlIGZyb20gcHl0aG9uXG5weXRob24ubG9hZChcInRlc3QucHlcIilcbmQgPC0gcHl0aG9uLmdldChcImRcIilcbmRcbmBgYCJ9 -->
+<pre class="r"><code>#Load/run the main Python script
+python.load(&quot;test.py&quot;)
+# Get the variable from python
+python.load(&quot;test.py&quot;)
+d &lt;- python.get(&quot;d&quot;)
+d</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdICA4MzggMTIwMCAgICAzXG4ifQ== -->
+<pre><code>[1]  838 1200    3</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHl0aG9uLmxvYWQoXCJ0ZXN0X3NpZnQucHlcIilcbmRlc2NzX2xpc3QgPC0gcHl0aG9uLmdldChcImRlc2NzX2xpc3RcIilcbiMgQ29udmVydCBsaXN0IHRvIGFycmF5XG4jIGltZ19kZXNjcyA8LSBkby5jYWxsKClcbiMgbGVuZ3RoKGltZ19kZXNjcylcbmxlbmd0aChkZXNjc19saXN0KVxuYGBgIn0= -->
+<pre class="r"><code>python.load(&quot;test_sift.py&quot;)
+descs_list &lt;- python.get(&quot;descs_list&quot;)
+# Convert list to array
+# img_descs &lt;- do.call()
+# length(img_descs)
+length(descs_list)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM3MDZcbiJ9 -->
+<pre><code>[1] 3706</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2ltZ19zaWZ0IDwtIGRvLmNhbGwoXCJyYmluZFwiLCBpbWdfZGVzY3MpXG5pbWdfc2lmdCA8LSBkby5jYWxsKFwicmJpbmRcIiwgZGVzY3NfbGlzdClcbmRpbShpbWdfc2lmdClcbmBgYCJ9 -->
+<pre class="r"><code>#img_sift &lt;- do.call(&quot;rbind&quot;, img_descs)
+img_sift &lt;- do.call(&quot;rbind&quot;, descs_list)
+dim(img_sift)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDM3MDYgIDEyOFxuIn0= -->
+<pre><code>[1] 3706  128</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW1nX3NpZnRbMTo1LCAxOjVdXG5gYGAifQ== -->
+<pre class="r"><code>img_sift[1:5, 1:5]</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBbLDFdIFssMl0gWywzXSBbLDRdIFssNV1cblsxLF0gICAgMCAgICAwICAgIDAgICAgMCAgICAyXG5bMixdICAgMjQgICAgMyAgICAwICAgIDIgICAgM1xuWzMsXSAgICAwICAgIDAgICAgMiAgICAyICAgIDFcbls0LF0gICAxMiAgICAwICAgIDAgICAgNyAgICA0XG5bNSxdICAgIDAgICAgMCAgICAxICAgIDEgICAgMVxuIn0= -->
+<pre><code>     [,1] [,2] [,3] [,4] [,5]
+[1,]    0    0    0    0    2
+[2,]   24    3    0    2    3
+[3,]    0    0    2    2    1
+[4,]   12    0    0    7    4
+[5,]    0    0    1    1    1</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogInRyeSB0ZXN0LnB5Ig0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCmBgYHtyfQ0KcGFja2FnZXVybCA8LSJodHRwOi8vY3Jhbi5yLXByb2plY3Qub3JnL2Jpbi93aW5kb3dzL1J0b29scy9SdG9vbHMzNC5leGUiDQppbnN0YWxsLnBhY2thZ2VzKHBhY2thZ2V1cmwsIGNvbnRyaWJ1cmw9TlVMTCwgdHlwZT0ic291cmNlIikNCmBgYA0KDQpgYGB7cn0NCnNldHdkKCJ+L0dpdEh1Yi9zcHIyMDE3LXByb2ozLWdyb3VwMTAvbGliIikNCmxpYnJhcnkoclB5dGhvbikNCiNMb2FkL3J1biB0aGUgbWFpbiBQeXRob24gc2NyaXB0DQpweXRob24ubG9hZCgidGVzdC5weSIpDQojIEdldCB0aGUgdmFyaWFibGUgZnJvbSBweXRob24NCnB5dGhvbi5sb2FkKCJ0ZXN0LnB5IikNCmQgPC0gcHl0aG9uLmdldCgiZCIpDQpkDQpgYGA=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogInRyeSB0ZXN0LnB5Ig0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCmBgYHtyfQ0KcGFja2FnZXVybCA8LSJodHRwOi8vY3Jhbi5yLXByb2plY3Qub3JnL2Jpbi93aW5kb3dzL1J0b29scy9SdG9vbHMzNC5leGUiDQppbnN0YWxsLnBhY2thZ2VzKHBhY2thZ2V1cmwsIGNvbnRyaWJ1cmw9TlVMTCwgdHlwZT0ic291cmNlIikNCmBgYA0KDQpgYGB7cn0NCnNldHdkKCJ+L0dpdEh1Yi9zcHIyMDE3LXByb2ozLWdyb3VwMTAvbGliIikNCmxpYnJhcnkoclB5dGhvbikNCmBgYA0KYGBge3J9DQojTG9hZC9ydW4gdGhlIG1haW4gUHl0aG9uIHNjcmlwdA0KcHl0aG9uLmxvYWQoInRlc3QucHkiKQ0KIyBHZXQgdGhlIHZhcmlhYmxlIGZyb20gcHl0aG9uDQpweXRob24ubG9hZCgidGVzdC5weSIpDQpkIDwtIHB5dGhvbi5nZXQoImQiKQ0KZA0KYGBgDQpgYGB7cn0NCnB5dGhvbi5sb2FkKCJ0ZXN0X3NpZnQucHkiKQ0KZGVzY3NfbGlzdCA8LSBweXRob24uZ2V0KCJkZXNjc19saXN0IikNCiMgQ29udmVydCBsaXN0IHRvIGFycmF5DQojIGltZ19kZXNjcyA8LSBkby5jYWxsKCkNCiMgbGVuZ3RoKGltZ19kZXNjcykNCmxlbmd0aChkZXNjc19saXN0KQ0KI2ltZ19zaWZ0IDwtIGRvLmNhbGwoInJiaW5kIiwgaW1nX2Rlc2NzKQ0KaW1nX3NpZnQgPC0gZG8uY2FsbCgicmJpbmQiLCBkZXNjc19saXN0KQ0KZGltKGltZ19zaWZ0KQ0KaW1nX3NpZnRbMTo1LCAxOjVdDQpgYGANCg==</div>
 
 
 
