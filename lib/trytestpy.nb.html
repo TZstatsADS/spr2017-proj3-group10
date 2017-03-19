@@ -174,9 +174,9 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGFja2FnZXVybCA8LVwiaHR0cDovL2NyYW4uci1wcm9qZWN0Lm9yZy9iaW4vd2luZG93cy9SdG9vbHMvUnRvb2xzMzQuZXhlXCJcbmluc3RhbGwucGFja2FnZXMocGFja2FnZXVybCwgY29udHJpYnVybD1OVUxMLCB0eXBlPVwic291cmNlXCIpXG5gYGAifQ== -->
-<pre class="r"><code>packageurl &lt;-&quot;http://cran.r-project.org/bin/windows/Rtools/Rtools34.exe&quot;
-install.packages(packageurl, contriburl=NULL, type=&quot;source&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI3BhY2thZ2V1cmwgPC1cImh0dHA6Ly9jcmFuLnItcHJvamVjdC5vcmcvYmluL3dpbmRvd3MvUnRvb2xzL1J0b29sczM0LmV4ZVwiXG4jaW5zdGFsbC5wYWNrYWdlcyhwYWNrYWdldXJsLCBjb250cmlidXJsPU5VTEwsIHR5cGU9XCJzb3VyY2VcIilcbmBgYCJ9 -->
+<pre class="r"><code>#packageurl &lt;-&quot;http://cran.r-project.org/bin/windows/Rtools/Rtools34.exe&quot;
+#install.packages(packageurl, contriburl=NULL, type=&quot;source&quot;)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -235,8 +235,62 @@ dim(img_sift)</code></pre>
 [5,]    0    0    1    1    1</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW1nPC1yZWFkSW1hZ2UoXCJpbWFnZV8wMDAxLmpwZ1wiKVxuZGlzcGxheShpbWcpXG5gYGAifQ== -->
+<pre class="r"><code>img&lt;-readImage(&quot;image_0001.jpg&quot;)
+display(img)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW1nX3NtYWxsIDwtIHJlc2l6ZShpbWcsIDEyOCwgMTI4KVxuZGlzcGxheShpbWdfc21hbGwpXG5gYGAifQ== -->
+<pre class="r"><code>img_small &lt;- resize(img, 128, 128)
+display(img_small)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW1nX2RpcjwtXCJDOi9Vc2Vycy9zaDM1NS9Eb2N1bWVudHMvR2l0SHViL3NwcjIwMTctcHJvajMtZ3JvdXAxMC9kYXRhL3Jhd2RhdGFcIlxubl9maWxlcyA8LSBsZW5ndGgobGlzdC5maWxlcyhpbWdfZGlyKSlcbmZpbGVzID0gbGlzdC5maWxlcyhpbWdfZGlyKVxuaW08LWxpc3QoKVxuZm9yKGkgaW4gMTpuX2ZpbGVzKXtcbiAgICBpbWcgPC0gcmVhZEltYWdlKHBhc3RlKGltZ19kaXIsIGZpbGVzW2ldLCBzZXA9Jy8nKSlcbiAgICBpbVtbaV1dPC1yZXNpemUoaW1nLCAxMjgsIDEyOClcbn1cbmBgYCJ9 -->
+<pre class="r"><code>img_dir&lt;-&quot;C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/rawdata&quot;
+n_files &lt;- length(list.files(img_dir))
+files = list.files(img_dir)
+im&lt;-list()
+for(i in 1:n_files){
+    img &lt;- readImage(paste(img_dir, files[i], sep='/'))
+    im[[i]]&lt;-resize(img, 128, 128)
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCJ+L0dpdEh1Yi9zcHIyMDE3LXByb2ozLWdyb3VwMTAvZGF0YS9yZXNpemVkYXRhXCIpXG5gYGAifQ== -->
+<pre class="r"><code>setwd(&quot;~/GitHub/spr2017-proj3-group10/data/resizedata&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdhcyBjaGFuZ2VkIHRvIEM6L1VzZXJzL3NoMzU1L0RvY3VtZW50cy9HaXRIdWIvc3ByMjAxNy1wcm9qMy1ncm91cDEwL2RhdGEvcmVzaXplZGF0YSBpbnNpZGUgYSBub3RlYm9vayBjaHVuay4gVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdpbGwgYmUgcmVzZXQgd2hlbiB0aGUgY2h1bmsgaXMgZmluaXNoZWQgcnVubmluZy4gVXNlIHRoZSBrbml0ciByb290LmRpciBvcHRpb24gaW4gdGhlIHNldHVwIGNodW5rIHRvIGNoYW5nZSB0aGUgdGhlIHdvcmtpbmcgZGlyZWN0b3J5IGZvciBub3RlYm9vayBjaHVua3MuXG4ifQ== -->
+<pre><code>The working directory was changed to C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/resizedata inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the the working directory for notebook chunks.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yIChpIGluIDE6bl9maWxlcyl7XG4gIHdyaXRlSW1hZ2UoaW1bW2ldXSwgcGFzdGUoXCJpbWFnZV9cIiwgaSxcIi5qcGdcIikpXG59XG5gYGAifQ== -->
+<pre class="r"><code>for (i in 1:n_files){
+  writeImage(im[[i]], paste(&quot;image_&quot;, i,&quot;.jpg&quot;))
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueDwtZmVhdHVyZShcIkM6L1VzZXJzL3NoMzU1L0RvY3VtZW50cy9HaXRIdWIvc3ByMjAxNy1wcm9qMy1ncm91cDEwL2RhdGEvcmVzaXplZGF0YVwiLCBzZXRfbmFtZT1cInRyYWluXCIpXG5gYGAifQ== -->
+<pre class="r"><code>x&lt;-feature(&quot;C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/resizedata&quot;, set_name=&quot;train&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0d2QoXCJ+L0dpdEh1Yi9zcHIyMDE3LXByb2ozLWdyb3VwMTAvZGF0YVwiKVxuYGBgIn0= -->
+<pre class="r"><code>setwd(&quot;~/GitHub/spr2017-proj3-group10/data&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdhcyBjaGFuZ2VkIHRvIEM6L1VzZXJzL3NoMzU1L0RvY3VtZW50cy9HaXRIdWIvc3ByMjAxNy1wcm9qMy1ncm91cDEwL2RhdGEgaW5zaWRlIGEgbm90ZWJvb2sgY2h1bmsuIFRoZSB3b3JraW5nIGRpcmVjdG9yeSB3aWxsIGJlIHJlc2V0IHdoZW4gdGhlIGNodW5rIGlzIGZpbmlzaGVkIHJ1bm5pbmcuIFVzZSB0aGUga25pdHIgcm9vdC5kaXIgb3B0aW9uIGluIHRoZSBzZXR1cCBjaHVuayB0byBjaGFuZ2UgdGhlIHRoZSB3b3JraW5nIGRpcmVjdG9yeSBmb3Igbm90ZWJvb2sgY2h1bmtzLlxuIn0= -->
+<pre><code>The working directory was changed to C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the the working directory for notebook chunks.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud3JpdGUuY3N2KHgsIFwiZmVhdHVyZV9yZXNpemUuY3N2XCIpXG5zYXZlKHgsIGZpbGU9XCJmZWF0dXJlX3Jlc2l6ZS5SZGF0YVwiKVxuYGBgIn0= -->
+<pre class="r"><code>write.csv(x, &quot;feature_resize.csv&quot;)
+save(x, file=&quot;feature_resize.Rdata&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogInRyeSB0ZXN0LnB5Ig0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCmBgYHtyfQ0KcGFja2FnZXVybCA8LSJodHRwOi8vY3Jhbi5yLXByb2plY3Qub3JnL2Jpbi93aW5kb3dzL1J0b29scy9SdG9vbHMzNC5leGUiDQppbnN0YWxsLnBhY2thZ2VzKHBhY2thZ2V1cmwsIGNvbnRyaWJ1cmw9TlVMTCwgdHlwZT0ic291cmNlIikNCmBgYA0KDQpgYGB7cn0NCnNldHdkKCJ+L0dpdEh1Yi9zcHIyMDE3LXByb2ozLWdyb3VwMTAvbGliIikNCmxpYnJhcnkoclB5dGhvbikNCmBgYA0KYGBge3J9DQojTG9hZC9ydW4gdGhlIG1haW4gUHl0aG9uIHNjcmlwdA0KcHl0aG9uLmxvYWQoInRlc3QucHkiKQ0KIyBHZXQgdGhlIHZhcmlhYmxlIGZyb20gcHl0aG9uDQpweXRob24ubG9hZCgidGVzdC5weSIpDQpkIDwtIHB5dGhvbi5nZXQoImQiKQ0KZA0KYGBgDQpgYGB7cn0NCnB5dGhvbi5sb2FkKCJ0ZXN0X3NpZnQucHkiKQ0KZGVzY3NfbGlzdCA8LSBweXRob24uZ2V0KCJkZXNjc19saXN0IikNCiMgQ29udmVydCBsaXN0IHRvIGFycmF5DQojIGltZ19kZXNjcyA8LSBkby5jYWxsKCkNCiMgbGVuZ3RoKGltZ19kZXNjcykNCmxlbmd0aChkZXNjc19saXN0KQ0KI2ltZ19zaWZ0IDwtIGRvLmNhbGwoInJiaW5kIiwgaW1nX2Rlc2NzKQ0KaW1nX3NpZnQgPC0gZG8uY2FsbCgicmJpbmQiLCBkZXNjc19saXN0KQ0KZGltKGltZ19zaWZ0KQ0KaW1nX3NpZnRbMTo1LCAxOjVdDQpgYGANCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogInRyeSB0ZXN0LnB5Ig0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCmBgYHtyfQ0KI3BhY2thZ2V1cmwgPC0iaHR0cDovL2NyYW4uci1wcm9qZWN0Lm9yZy9iaW4vd2luZG93cy9SdG9vbHMvUnRvb2xzMzQuZXhlIg0KI2luc3RhbGwucGFja2FnZXMocGFja2FnZXVybCwgY29udHJpYnVybD1OVUxMLCB0eXBlPSJzb3VyY2UiKQ0KYGBgDQoNCmBgYHtyfQ0Kc2V0d2QoIn4vR2l0SHViL3NwcjIwMTctcHJvajMtZ3JvdXAxMC9saWIiKQ0KbGlicmFyeShyUHl0aG9uKQ0KYGBgDQpgYGB7cn0NCiNMb2FkL3J1biB0aGUgbWFpbiBQeXRob24gc2NyaXB0DQpweXRob24ubG9hZCgidGVzdC5weSIpDQojIEdldCB0aGUgdmFyaWFibGUgZnJvbSBweXRob24NCnB5dGhvbi5sb2FkKCJ0ZXN0LnB5IikNCmQgPC0gcHl0aG9uLmdldCgiZCIpDQpkDQpgYGANCmBgYHtyfQ0KcHl0aG9uLmxvYWQoInRlc3Rfc2lmdC5weSIpDQpkZXNjc19saXN0IDwtIHB5dGhvbi5nZXQoImRlc2NzX2xpc3QiKQ0KIyBDb252ZXJ0IGxpc3QgdG8gYXJyYXkNCiMgaW1nX2Rlc2NzIDwtIGRvLmNhbGwoKQ0KIyBsZW5ndGgoaW1nX2Rlc2NzKQ0KbGVuZ3RoKGRlc2NzX2xpc3QpDQojaW1nX3NpZnQgPC0gZG8uY2FsbCgicmJpbmQiLCBpbWdfZGVzY3MpDQppbWdfc2lmdCA8LSBkby5jYWxsKCJyYmluZCIsIGRlc2NzX2xpc3QpDQpkaW0oaW1nX3NpZnQpDQppbWdfc2lmdFsxOjUsIDE6NV0NCmBgYA0KYGBge3J9DQppbWc8LXJlYWRJbWFnZSgiaW1hZ2VfMDAwMS5qcGciKQ0KZGlzcGxheShpbWcpDQpgYGANCmBgYHtyfQ0KaW1nX3NtYWxsIDwtIHJlc2l6ZShpbWcsIDEyOCwgMTI4KQ0KZGlzcGxheShpbWdfc21hbGwpDQpgYGANCmBgYHtyfQ0KaW1nX2RpcjwtIkM6L1VzZXJzL3NoMzU1L0RvY3VtZW50cy9HaXRIdWIvc3ByMjAxNy1wcm9qMy1ncm91cDEwL2RhdGEvcmF3ZGF0YSINCm5fZmlsZXMgPC0gbGVuZ3RoKGxpc3QuZmlsZXMoaW1nX2RpcikpDQpmaWxlcyA9IGxpc3QuZmlsZXMoaW1nX2RpcikNCmltPC1saXN0KCkNCmZvcihpIGluIDE6bl9maWxlcyl7DQogICAgaW1nIDwtIHJlYWRJbWFnZShwYXN0ZShpbWdfZGlyLCBmaWxlc1tpXSwgc2VwPScvJykpDQogICAgaW1bW2ldXTwtcmVzaXplKGltZywgMTI4LCAxMjgpDQp9DQpgYGANCmBgYHtyfQ0Kc2V0d2QoIn4vR2l0SHViL3NwcjIwMTctcHJvajMtZ3JvdXAxMC9kYXRhL3Jlc2l6ZWRhdGEiKQ0KZm9yIChpIGluIDE6bl9maWxlcyl7DQogIHdyaXRlSW1hZ2UoaW1bW2ldXSwgcGFzdGUoImltYWdlXyIsIGksIi5qcGciKSkNCn0NCmBgYA0KYGBge3J9DQp4PC1mZWF0dXJlX3VwKCJDOi9Vc2Vycy9zaDM1NS9Eb2N1bWVudHMvR2l0SHViL3NwcjIwMTctcHJvajMtZ3JvdXAxMC9kYXRhL3Jlc2l6ZWRhdGEiLCBzZXRfbmFtZT0idHJhaW4iKQ0KYGBgDQpgYGB7cn0NCnNldHdkKCJ+L0dpdEh1Yi9zcHIyMDE3LXByb2ozLWdyb3VwMTAvZGF0YSIpDQp3cml0ZS5jc3YoeCwgImZlYXR1cmVfcmVzaXplLmNzdiIpDQpzYXZlKHgsIGZpbGU9ImZlYXR1cmVfcmVzaXplLlJkYXRhIikNCmBgYA0K</div>
 
 
 

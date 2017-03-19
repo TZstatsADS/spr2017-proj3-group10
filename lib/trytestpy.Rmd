@@ -3,8 +3,8 @@ title: "try test.py"
 output: html_notebook
 ---
 ```{r}
-packageurl <-"http://cran.r-project.org/bin/windows/Rtools/Rtools34.exe"
-install.packages(packageurl, contriburl=NULL, type="source")
+#packageurl <-"http://cran.r-project.org/bin/windows/Rtools/Rtools34.exe"
+#install.packages(packageurl, contriburl=NULL, type="source")
 ```
 
 ```{r}
@@ -30,4 +30,36 @@ length(descs_list)
 img_sift <- do.call("rbind", descs_list)
 dim(img_sift)
 img_sift[1:5, 1:5]
+```
+```{r}
+img<-readImage("image_0001.jpg")
+display(img)
+```
+```{r}
+img_small <- resize(img, 128, 128)
+display(img_small)
+```
+```{r}
+img_dir<-"C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/rawdata"
+n_files <- length(list.files(img_dir))
+files = list.files(img_dir)
+im<-list()
+for(i in 1:n_files){
+    img <- readImage(paste(img_dir, files[i], sep='/'))
+    im[[i]]<-resize(img, 128, 128)
+}
+```
+```{r}
+setwd("~/GitHub/spr2017-proj3-group10/data/resizedata")
+for (i in 1:n_files){
+  writeImage(im[[i]], paste("image_", i,".jpg"))
+}
+```
+```{r}
+x<-feature_up("C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/resizedata", set_name="train")
+```
+```{r}
+setwd("~/GitHub/spr2017-proj3-group10/data")
+write.csv(x, "feature_resize.csv")
+save(x, file="feature_resize.Rdata")
 ```
