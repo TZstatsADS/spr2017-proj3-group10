@@ -40,6 +40,7 @@ img_small <- resize(img, 128, 128)
 display(img_small)
 ```
 ```{r}
+library("EBImage")
 img_dir<-"C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/rawdata"
 n_files <- length(list.files(img_dir))
 files = list.files(img_dir)
@@ -52,7 +53,7 @@ for(i in 1:n_files){
 ```{r}
 setwd("~/GitHub/spr2017-proj3-group10/data/resizedata")
 for (i in 1:n_files){
-  writeImage(im[[i]], paste("image_", i,".jpg"))
+  writeImage(im[[i]], paste("image_", i,".jpg", sep=""))
 }
 ```
 ```{r}
