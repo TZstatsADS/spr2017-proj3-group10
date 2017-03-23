@@ -21,16 +21,17 @@ lab_test<-label[N]
 
 # use xgb
 
-# train error
-bstSparse <- xgboost(data = data_train, label = lab_train, max.depth = 2, eta = 1, nthread = 2, nround = 2, objective = "binary:logistic")
+# train error 
+# nthread = 2, bstSparse <- xgboost(data = data_train, label = lab_train, max.depth = 2, eta = 1, nround = 2, objective = "binary:logistic")
+
+bstSparse <- xgboost(data = data_train, label = lab_train, max.depth = 2, eta = 0.19, nround = 2, nthread = 10,objective = "binary:logistic")
 
 dtrain <- xgb.DMatrix(data = data_train, label = lab_train)
 
-bst <- xgboost(data = dtrain, max.depth = 2, eta = 1, nthread = 2, nround = 50, objective = "binary:logistic", verbose = 0)
+bst <- xgboost(data = dtrain, max.depth = 2, eta = 0.19,  nround = 69,nthread = 10, objective = "binary:logistic", verbose = 0)
 
 # test error
 pred <- predict(bst, data_test)
 confusionMatrix(data=as.numeric(pred > 0.5),
                 reference=lab_test,
                 positive='1')
-
