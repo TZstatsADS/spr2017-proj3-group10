@@ -51,9 +51,17 @@ for(i in 1:n_files){
 }
 ```
 ```{r}
-setwd("~/GitHub/spr2017-proj3-group10/data/resizedata")
+setwd("C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/resize")
 for (i in 1:n_files){
-  writeImage(im[[i]], paste("image_", i,".jpg", sep=""))
+  if (i<10){
+    writeImage(im[[i]], paste("image_000", i,".jpg", sep=""))
+  } else if (i<100){
+    writeImage(im[[i]], paste("image_00", i,".jpg", sep=""))
+  } else if (i<1000){
+    writeImage(im[[i]], paste("image_0", i,".jpg", sep=""))
+  } else{
+    writeImage(im[[i]], paste("image_", i,".jpg", sep=""))
+  }
 }
 ```
 ```{r}
@@ -63,4 +71,22 @@ x<-feature_up("C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/resize
 setwd("~/GitHub/spr2017-proj3-group10/data")
 write.csv(x, "feature_resize.csv")
 save(x, file="feature_resize.Rdata")
+```
+```{r}
+python.load("sift.py")
+im_features <- python.get("imfeatures")
+```
+```{r}
+# Convert list to array
+# img_descs <- do.call()
+# length(img_descs)
+#length(descs_list)
+#img_sift <- do.call("rbind", img_descs)
+img_sift <- do.call("rbind", im_features)
+dim(img_sift)
+img_sift[1:5, 1:5]
+```
+```{r}
+setwd("~/GitHub/spr2017-proj3-group10/lib")
+python.load("pcasvm.py")
 ```
