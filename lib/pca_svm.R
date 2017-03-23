@@ -31,7 +31,7 @@ testset_pca<-predict(pca_train, newdata = testset[,-1])
 testset_pca<-cbind(y=testset[,1],testset_pca) 
 
 # SVM prediction using dataset after PCA
-model1<-svm(y~.,data=trainset_pca,cost=10,gamma=50,scale=F,kernel="radial")
+model1<-svm(y~.,data=trainset_pca,cost=5,gamma=100,scale=F,kernel="radial")
 
 #predict testset using trained svm model
 svm.pred<-predict(model1, testset_pca[-1])
