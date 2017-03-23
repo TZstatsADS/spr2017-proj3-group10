@@ -40,4 +40,4 @@ svm.pred<-predict(model1, testset_pca[-1])
 
 # Training error
 svm_train<-predict(model1,trainset_pca[-1])
-1-sum(svm_train!=trainset_pca$y)/500
+1-sum(svm_train!=trainset_pca$y)/1500
