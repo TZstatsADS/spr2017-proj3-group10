@@ -1,5 +1,5 @@
 # Project: Labradoodle or Fried Chicken? In Blakc and White.
-![image](figs/poodleKFC.jpg)
+![image](figs/home_img.jpg)
 
 ### [Full Project Description](doc/project3_desc.html)
 
@@ -32,7 +32,8 @@ Make sure that the above command is executed in the virtual environment.  Usuall
 
 At this point, there will be images in the `data/img_edge`, `data/img_resize`, and `data/img_sobel` folders.  Additionally, there will be SFrame objects saved in the `data/sframe` folder.  We have one last step to run the jupyter notebook.  We have to change the base_dir variable in the `main_notebook.ipynb` file to reflect our local project directory.
 
-**Contribution statement**: ([default](doc/a_note_on_contributions.md)) Galen contributed image processing and notebook code and commentary.  All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement.
+**Contribution statement**: ([default](doc/a_note_on_contributions.md)) Galen contributed image processing and notebook code and commentary.   Xuanzi did neural network linear and kernal SVM and tune the models as well as using principal component analysis to reduce the feature dimensions.
+All team members contributed equally in all stages of this project. All team members approve our work presented in this GitHub repository including this contributions statement.
 
 Following [suggestions](http://nicercode.github.io/blog/2013-04-05-projects/) by [RICH FITZJOHN](http://nicercode.github.io/about/#Team) (@richfitz). This folder is orgarnized as follows.
 
