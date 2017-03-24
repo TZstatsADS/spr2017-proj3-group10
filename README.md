@@ -7,10 +7,10 @@ Term: Spring 2017
 
 + Team #10
 + Team members
-	+ team member 1
-	+ team member 2
-	+ team member 3
-	+ team member 4
+	+ Zixuan Guan
+	+ Senyao Han
+	+ Yuan Mei
+	+ Xuanzi Xu
 	+ Galen Simmons
 
 + Project summary: In this project, we created a classification engine for grayscale images of poodles versus images of fried chickens.  To demonstrate our methods, we created an ipython notebook contained in doc/main_notebook.ipynb.  In order to replicate the results we achieved, it is necessary to configure a virtual environment with several key packages including `scikit-learn` and `graphlab-create`.  Therefore, we provide an `environment.yml` file, which contains the configuration info necessary to build the virtual environment.  Below are instructions.
