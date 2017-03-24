@@ -1,0 +1,87 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+```{r}
+library(gbm)
+library(dplyr)
+library(e1071)
+library(caret)
+```
+```{r}
+# load feature data
+load("C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data/siftFeatures.RData")
+# set working directory
+setwd("C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/data")
+# load label
+label<-read.csv("labels.csv",header = T)
+```
+```{r}
+# transpose feature data
+sift_features<-t(sift_features)
+y<-as.factor(label$V1)
+y1<-label$V1
+
+# set as a dataframe
+dat<-data.frame(y,sift_features)
+dat2<-data.frame(y1,sift_features)
+names<-c("labels",paste0('Feature',1:5000))
+colnames(dat2)<-names
+
+# split the data into testset and trainset
+indice<-sample(1:nrow(dat),size=500,replace = F)
+testset<-dat[indice,] # Contains 500 observations
+testset2<-dat2[indice,]
+trainset<-dat[-indice,] # Contains 1500 observations
+trainset2<-dat2[-indice,] 
+```
+```{r}
+source("C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/lib/train.R")
+source("C:/Users/sh355/Documents/GitHub/spr2017-proj3-group10/lib/test.R")
+```
+```{r}
+gbm1 = gbm(labels ~ .,data=trainset2,distribution = "adaboost",
+               n.trees = 512,
+               bag.fraction = 0.5,interaction.depth=3,train.fraction = 1,cv.folds = 5)
+
+```
+```{r}
+# predict train
+trainset2$predicted <-predict(gbm1,as.data.frame(trainset2),
+                          n.trees=512,type="response")
+
+# Create Confusion Matrix
+confusionMatrix(data=as.numeric(trainset2$predicted> 0.5),
+                reference=trainset2$labels,
+                positive='1')
+# train accuracy 0.7856
+```
+
+```{r}
+# predict train
+testset2$predicted <-predict(gbm1,as.data.frame(testset2),
+                         n.trees=512,type="response")
+
+# Create Confusion Matrix
+confusionMatrix(data=as.numeric(testset2$predicted> 0.5),
+                reference=testset2$labels,
+                positive='1')
+```
+
+```{r}
+# Train pca+SVM model
+train_svm<-train(trainset[,-1],trainset[,1])
+```
+```{r}
+# SVM training accuracy
+train_svm$training_accuracy
+```
+```{r}
+# predict test on pca+SVM
+result<-test(train_svm$fit, testset[,-1], train_svm$pca_fit)
+```
+```{r}
+# accuracy on testset
+1-sum((as.numeric(result)-1)!=testset[,1])/500
+```

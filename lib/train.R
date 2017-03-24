@@ -1,15 +1,6 @@
-#########################################################
-### Train a classification model with training images ###
-#########################################################
-
-### Author: Yuting Ma
-### Project 3
-### ADS Spring 2016
-
-
-train <- function(dat_train, label_train, par=NULL){
+train <- function(dat_train, label_train){
   
-  ### Train a Gradient Boosting Model (GBM) using processed features from training images
+  ### Train a SVM using processed features from training images
   
   ### Input: 
   ###  -  processed features from images 
@@ -17,21 +8,22 @@ train <- function(dat_train, label_train, par=NULL){
   ### Output: training model specification
   
   ### load libraries
-  library("gbm")
+  library("e1071")
   
-  ### Train with gradient boosting model
-  if(is.null(par)){
-    depth <- 3
-  } else {
-    depth <- par$depth
-  }
-  fit_gbm <- gbm.fit(x=dat_train, y=label_train,
-                     n.trees=2000,
-                     distribution="bernoulli",
-                     interaction.depth=depth, 
-                     bag.fraction = 0.5,
-                     verbose=FALSE)
-  best_iter <- gbm.perf(fit_gbm, method="OOB", plot.it = FALSE)
-
-  return(list(fit=fit_gbm, iter=best_iter))
+  # Set as a dataframe
+  trainset<-cbind(y=label_train,dat_train)
+  n<-nrow(trainset)
+  
+  # pca of trainset 
+  pca_train<-prcomp(trainset[,-1])
+  # new trainset after pca
+  trainset_pca<-data.frame(y=trainset[,1], pca_train$x)
+  
+  ### Train with kenal SVM with parameter c=5 and gamma=100 
+  
+  model<-svm(y~.,data=trainset_pca,cost=5,gamma=100,scale=F,kernel="radial")
+  
+  svm_train<-predict(model,trainset_pca[-1])
+  accu=1-sum(svm_train!=trainset_pca$y)/n  
+  return(list(fit=model, training_accuracy=accu, pca_fit=pca_train))
 }
