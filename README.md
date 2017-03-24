@@ -1,4 +1,4 @@
-# Project: Labradoodle or Fried Chicken? In Blakc and White.
+# Project: Labradoodle or Fried Chicken? In Black and White.
 ![image](figs/home_img.jpg)
 
 ### [Full Project Description](doc/project3_desc.html)
